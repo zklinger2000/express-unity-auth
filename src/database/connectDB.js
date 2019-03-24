@@ -11,7 +11,7 @@ const connectDB = () => {
 
   if (config.nodeEnv !== 'test') {
     // Connect to MongoDB
-    mongoose.connect(config.dbUri, { promiseLibrary: bluebird });
+    mongoose.connect(config.dbUri, { promiseLibrary: bluebird, useNewUrlParser: true });
 
     //============================
     // CONNECTION EVENT LISTENERS
