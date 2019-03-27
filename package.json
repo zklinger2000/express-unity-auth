@@ -1,10 +1,10 @@
 {
-  "name": "azure-express-starter",
+  "name": "express-unity-auth",
   "version": "0.0.1",
-  "description": "Nodejs application for use with a Unity game client.",
+  "description": "Nodejs Express server for use with a Unity game client, with secure JWT based login and MongoDB.",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/zklinger3000/azure-express-starter.git"
+    "url": "https://github.com/zklinger2000/express-unity-auth"
   },
   "engines": {
     "node": ">= 8.1.0",
