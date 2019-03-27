@@ -14,12 +14,12 @@ const jwtOptions = {
 
 // JWT strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
-  console.log(payload);
   // See if the user ID in the payload exists in our database
   User.findById(payload.sub, function(err, user) {
     if (err) return done(err, false);
     // If there is a user found, call done with null for 'no errors' and the returned User from db
     if (user) {
+      // TODO: Create a timestamp check on {payload.iat} if you want tokens to expire
       done(null, user);
     } else { // Else call done with null and false for 'no user found'
       done(null, false);
