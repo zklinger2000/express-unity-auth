@@ -36,7 +36,7 @@ const usersController = {
                 if (err) {
                   res.status(500).send(err);
                 } else {
-                  res.status(200).send(newUser);
+                  res.status(200).send({ username: newUser.username, token: tokenForUser(newUser) });
                 }
               });
             });
@@ -60,7 +60,7 @@ const usersController = {
 
   login: (req, res) => {
     // Return a token with timestamp info
-    res.status(200).send({ token: tokenForUser(req.user) });
+    res.status(200).send({ username: req.user.username, token: tokenForUser(req.user) });
   }
 
 };
