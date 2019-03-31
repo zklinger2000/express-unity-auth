@@ -1,132 +1,65 @@
-# azure-express-dev
+# express-unity-auth
+#### Nodejs: `10.15.3`
+#### MongoDB: `4.0.2`
 
-Starter for developing an Express app with Microsoft Azure's App Service.
+# Introduction
+Built with ExpressJS, this demos a REST API for a Bearer token based
+authentication system integrated with MongoDB.
 It uses an npm script to build using Babel so you can write with the 
 latest JavaScript features.
-There is a User login example built with Passport that you can use with
-CosmosDB to save users, but written using the Mongoose API.
-
-In addition to the Passport login, this app returns a JWT token in the
-response to be used when making future requests for secure resources.
+The Passport service uses a 'local' username/password strategy, but
+can be easily modified to use Google, AWS, etc.
+In addition to the Passport login, this app returns a JWT token that
+can be saved locally and used when making future requests for secure 
+resources.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-- Nodejs
-- MongoDB
-
+- Nodejs - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+- MongoDB - [https://docs.mongodb.com/manual/installation/](https://docs.mongodb.com/manual/installation/)
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Simply clone the repo and install dependencies.  This will give you
+the _back-end_ piece of this **full-stack** project.  
+**NOTE**: The _front-end_ client to this is the Unity project here:
+[https://github.com/zklinger2000/unity-auth-manager](https://github.com/zklinger2000/unity-auth-manager)
 
-```
-Give examples
-```
 
 ### Installing
+```
+git clone git@github.com:zklinger2000/express-unity-auth.git
+```
+```
+npm install
+```
 
-A step by step series of examples that tell you have to get a development env running
+## Environment Variables
 
-Say what the step will be
-
-1. Mention .env file
+To keep passwords and keys out of the git repo and somewhat safe, we
+use a `.env` file that can be read using the `dotenv` library.
+In the root of the project directory:
+```
+touch .env
+```
+Now fill in the blanks
+```
+PORT=8050
+NODE_ENV=development
+MONGODB_URI=mongodb://<username>:<password>@<mongo_address>:<mongo_port>/<db_name>
+APP_SECRET=someReallyLongString
+```
 
 ## Deployment
 
+```
+npm run dev:start
+```
 Add additional notes about how to deploy this on a live system
-
-### Using /logstream
-The simplest way to get streaming logs is to use curl, e.g.
-
-```
-curl -u {username} https://{sitename}.scm.azurewebsites.net/api/logstream
-```
-
-1. Create an App Service on the Nodejs Stack for Linux with local git deployment
-1. Add `APP_SECRET` to application settings or the service will run but Passport
-will cause a constant `500 Internal Server Error`
-1. Go to the app's console
-
-```cmd
-https://<your-app-name>.scm.azurewebsites.net
-```
-
-1. Go to the menu **Debug Console** -> **SSH**
-1. Use `vim` to edit the deploy.sh
-1. Remove the `--production` flag from NPM install  
-`# 3. Install npm packages`
-
-```cmd
-  echo "Running $NPM_CMD install"
-```
-
-1. Add these lines after the line `"npm failed"`
-
-```cmd
-  echo "Running $NPM_CMD run build"
-  eval $NPM_CMD "run build"
-  exitWithMessageOnError "build failed"
-```
-
-
-1. Add to git remotes
-
-# Database
-
-1. Setup a CosmosDB
-1. TODO: Explain the `MONGODB_URI` application settings.
-1. To use Postman and make requests from local dev environment, add your
-IP address under the Firewall section in the Azure portal for the CosmosDB
-
-# FTP
-```ftps://waws-prod-mwh-007.ftp.azurewebsites.windows.net```
-
-**username must have site name in front!**  
-Username: `<app-name>\<deployment username>`
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Contributing
-
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Zachary Klinger
 
 ## License
 
@@ -134,6 +67,4 @@ UNLICENSED
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Much of this was built upon the techniques learned from Stephen Grider's course on Udemy
